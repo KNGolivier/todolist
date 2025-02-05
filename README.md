@@ -1,6 +1,15 @@
 # todo_list_examen
 
-A new Flutter project.
+Une application mobile de gestion de tâches développée en Flutter ,  permettant d'ajouter, modifier, marquer comme terminée et supprimer des tâches.Cette application a été développé par KONGO Olivier .
+
+# Fonctionnalités
+
+- Ajouter une nouvelle tâche avec un titre et une description.
+- Modifier une tâche existante.
+- Marquer une tâche comme terminée ou non terminée.
+- Supprimer une tâche.
+
+
 
 ## Getting Started
 

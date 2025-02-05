@@ -3,7 +3,7 @@ import 'package:todo_list_examen/File/TachePage.dart';
 
 class TacheService {
   final CollectionReference tacheCollection =
-      FirebaseFirestore.instance.collection('taches');
+      FirebaseFirestore.instance.collection('tasks');
 
   // Ajout d'une tâche
   Future<void> addTask(String title, String description) async {
@@ -15,7 +15,7 @@ class TacheService {
   }
 
   // Récupération de l'ensemble les tâches en temps réel
-  Stream<List<Tache>> getTasks() {
+  Stream<List<Tache>> getTache() {
     return tacheCollection.snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return Tache.fromMap(doc.data() as Map<String, dynamic>, doc.id);
@@ -23,12 +23,20 @@ class TacheService {
     });
   }
 
-  // Mettre à jour une tâche
+  // Mettre à jour d'une tâche
   Future<void> updateTache(String tacheId, bool isCompleted) async {
     await tacheCollection.doc(tacheId).update({'isCompleted': isCompleted});
   }
 
-  // Suppression une tâche
+  //Mettre à jour le titre et la description d'une tâche
+  void updateTacheDetails(String id, String newTitle, String newDescription) {
+    FirebaseFirestore.instance.collection('tasks').doc(id).update({
+      'title': newTitle,
+      'description': newDescription,
+    });
+  }
+
+  // Suppression d'une tâche
   Future<void> deleteTache(String tacheId) async {
     await tacheCollection.doc(tacheId).delete();
   }
